@@ -17,7 +17,7 @@ public class App {
 	}
 
 	@Bean
-	public CommandLineRunner runner(final ToStdOutPublisher toStdOutPublisher) {
+	public CommandLineRunner toStdOutRunner(final ToStdOutPublisher toStdOutPublisher) {
 		return args -> IntStream.range(0, 100).parallel().forEach(i -> toStdOutPublisher.publish("Hello Queue " + i));
 	}
 
