@@ -19,7 +19,7 @@ public class ToPostgresDbReceiver {
 
     private final MsgRepository msgRepository;
 
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "postgres", durable = "false"), exchange = @Exchange(value = QueueConfig.TOPIC_EXCHANGE_NAME, ignoreDeclarationExceptions = "true"), key = "postgres.#"))
+    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "postgres", durable = "false"), exchange = @Exchange(value = QueueConfig.TOPIC_EXCHANGE_NAME, ignoreDeclarationExceptions = "true", type = "topic"), key = "postgres.#"))
     public void receiveMessage(Msg msg) {
         log.info("Saving msg to databse: {}", msg);
         final Msg savedMsg = this.msgRepository.save(msg);
